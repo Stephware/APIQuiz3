@@ -1,0 +1,125 @@
+@APIQuiz3_HostAddress = http://localhost:5201
+
+GET {{APIQuiz3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/auth/login
+Content-Type: application/json
+X-API-KEY: STEPHENOLDKEY
+
+{
+    "username": "admin",
+    "password": "admin123"
+}
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/auth/login
+Content-Type: application/json
+X-API-KEY: STEPHENKEY
+
+{
+    "username": "admin",
+    "password": "admin123"
+}
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/auth/login
+Content-Type: application/json
+X-API-KEY: STEPHENKEY
+
+{
+    "username": "user",
+    "password": "user123"
+}
+
+###
+
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc3Njk1MTc1OX0.qY2W1_nkf80ahMljNBD7NE4rp7Tlm-i9D7qFaTkvlRs
+@userToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJleHAiOjE3NzY5NTE3ODF9.bX0l21bPcr4kYLcO9H-9f-nOJG9B2YADLKqsTI9ZaJY
+
+//ADMIN
+@refreshToken = 72dbcfa2-2675-4eb4-89e3-74e105640b8a
+
+//USER
+@refreshToken = 72eec10e-9522-46ef-b5c9-bd4998638874
+
+###
+
+GET {{APIQuiz3_HostAddress}}/api/tasks
+Authorization: Bearer {{adminToken}}
+
+###
+
+GET {{APIQuiz3_HostAddress}}/api/tasks
+Authorization: Bearer {{userToken}}
+
+###
+
+GET {{APIQuiz3_HostAddress}}/api/tasks/2
+Authorization: Bearer {{adminToken}}
+
+###
+
+GET {{APIQuiz3_HostAddress}}/api/tasks/1
+Authorization: Bearer {{userToken}}
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/tasks
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "title": "Finish the Vet Clinic System",
+  "isCompleted": false
+}
+###
+
+POST {{APIQuiz3_HostAddress}}/api/tasks
+Content-Type: application/json
+Authorization: Bearer {{userToken}}
+
+{
+  "title": "Review for ELECT2",
+  "isCompleted": false
+}
+###
+
+PUT {{APIQuiz3_HostAddress}}/api/tasks/3
+Content-Type: application/json
+Authorization: Bearer {{adminToken}}
+
+{
+  "title": "Make Parents Proud",
+  "isCompleted": true
+}
+
+###
+
+DELETE {{APIQuiz3_HostAddress}}/api/tasks/2
+Authorization: Bearer {{adminToken}}
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+###
+

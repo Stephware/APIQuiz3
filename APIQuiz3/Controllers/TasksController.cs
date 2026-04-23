@@ -21,9 +21,11 @@ namespace APIQuiz3.Controllers
         private static int counter = 1;
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult GetAll() => Ok(tasks);
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult Get(int id)
         {
             var task = tasks.FirstOrDefault(t => t.Id == id);

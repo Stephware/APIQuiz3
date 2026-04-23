@@ -18,6 +18,17 @@ X-API-KEY: STEPHENOLDKEY
 
 POST {{APIQuiz3_HostAddress}}/api/auth/login
 Content-Type: application/json
+X-API-KEY: STEPHEN2NDOLDKEY
+
+{
+    "username": "admin",
+    "password": "admin123"
+}
+
+###
+
+POST {{APIQuiz3_HostAddress}}/api/auth/login
+Content-Type: application/json
 X-API-KEY: STEPHENKEY
 
 {
